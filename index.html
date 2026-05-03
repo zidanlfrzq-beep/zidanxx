@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perkenalan Diri - Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    .wrapper {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #667eea;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="file"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .file-input-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .file-input-label {
+      display: block;
+      padding: 12px 15px;
+      background: #f5f5f5;
+      border: 2px dashed #667eea;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    .file-input-label:hover {
+      background: #f0f0ff;
+    }
+
+    .file-name {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    button {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-reset {
+      background: #f0f0f0;
+      color: #333;
+    }
+
+    .btn-reset:hover {
+      background: #e0e0e0;
+    }
+
+    .output-container {
+      margin-top: 40px;
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .output-container.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .profile-card {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 5px solid white;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .profile-image.no-image {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 40px;
+    }
+
+    .profile-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .profile-title {
+      font-size: 14px;
+      color: #667eea;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .profile-info {
+      text-align: left;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .info-item:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: #667eea;
+      min-width: 100px;
+    }
+
+    .info-value {
+      color: #333;
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .error-message {
+      background: #fee;
+      color: #c33;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      display: none;
+      font-size: 14px;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="container">
+    <div class="header">
+      <h1>📋 Perkenalan Diri</h1>
+      <p>Silakan isi data diri Anda dengan lengkap</p>
+    </div>
+
+    <div class="content">
+      <div class="error-message" id="errorMsg"></div>
+
+      <!-- Form Input -->
+      <div id="formSection">
+        <div class="form-group">
+          <label for="foto">Foto Profil</label>
+          <div class="file-input-wrapper">
+            <label for="foto" class="file-input-label">
+              📸 Pilih Foto
+            </label>
+            <input type="file" id="foto" accept="image/*">
+            <div class="file-name" id="fileName"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nama">Nama Lengkap *</label>
+          <input type="text" id="nama" placeholder="Masukkan nama lengkap Anda">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" placeholder="Masukkan email Anda">
+        </div>
+
+        <div class="form-group">
+          <label for="telepon">Nomor Telepon *</label>
+          <input type="tel" id="telepon" placeholder="Masukkan nomor telepon">
+        </div>
+
+        <div class="form-group">
+          <label for="kelas">Kelas / Pekerjaan *</label>
+          <input type="text" id="kelas" placeholder="Masukkan kelas atau pekerjaan">
+        </div>
+
+        <div class="form-group">
+          <label for="alamat">Alamat *</label>
+          <textarea id="alamat" placeholder="Masukkan alamat lengkap Anda"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="hobi">Hobi *</label>
+          <input type="text" id="hobi" placeholder="Masukkan hobi Anda">
+        </div>
+
+        <div class="form-group">
+          <label for="keahlian">Keahlian</label>
+          <input type="text" id="keahlian" placeholder="Contoh: Coding, Desain, Musik">
+        </div>
+
+        <div class="button-group">
+          <button class="btn-submit" onclick="tampilData()">Tampilkan Profile</button>
+          <button class="btn-reset" onclick="resetForm()">Reset</button>
+        </div>
+      </div>
+
+      <!-- Output / Profile Display -->
+      <div class="output-container" id="outputSection">
+        <div class="profile-card">
+          <div id="fotoDisplay"></div>
+          <div class="profile-name" id="namaDisplay"></div>
+          <div class="profile-title" id="kelasDisplay"></div>
+
+          <div class="profile-info">
+            <div class="info-item">
+              <div class="info-label">📧 Email</div>
+              <div class="info-value" id="emailDisplay"></div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">📱 Telepon</div>
+              <div class="info-value" id="teleponDisplay"></div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">📍 Alamat</div>
+              <div class="info-value" id="alamatDisplay"></div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">🎯 Hobi</div>
+              <div class="info-value" id="hobiDisplay"></div>
+            </div>
+            <div class="info-item" id="keahlianItem" style="display: none;">
+              <div class="info-label">⭐ Keahlian</div>
+              <div class="info-value" id="keahlianDisplay"></div>
+            </div>
+          </div>
+
+          <div class="button-group" style="margin-top: 20px;">
+            <button class="btn-reset" onclick="editForm()">← Ubah Data</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Update nama file ketika file dipilih
+document.getElementById('foto').addEventListener('change', function(e) {
+  const fileName = e.target.files[0]?.name;
+  document.getElementById('fileName').textContent = fileName ? `✓ ${fileName}` : '';
+});
+
+function showError(message) {
+  const errorEl = document.getElementById('errorMsg');
+  errorEl.textContent = message;
+  errorEl.classList.add('show');
+  setTimeout(() => {
+    errorEl.classList.remove('show');
+  }, 4000);
+}
+
+function tampilData() {
+  // Get form values
+  let nama = document.getElementById('nama').value.trim();
+  let email = document.getElementById('email').value.trim();
+  let telepon = document.getElementById('telepon').value.trim();
+  let kelas = document.getElementById('kelas').value.trim();
+  let alamat = document.getElementById('alamat').value.trim();
+  let hobi = document.getElementById('hobi').value.trim();
+  let keahlian = document.getElementById('keahlian').value.trim();
+  let foto = document.getElementById('foto').files[0];
+
+  // Validation
+  if(!nama || !email || !telepon || !kelas || !alamat || !hobi) {
+    showError('❌ Harap isi semua data yang wajib diisi (ditandai *)');
+    return;
+  }
+
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)) {
+    showError('❌ Format email tidak valid');
+    return;
+  }
+
+  // Hide error message
+  document.getElementById('errorMsg').classList.remove('show');
+
+  // Display form values
+  document.getElementById('namaDisplay').textContent = nama;
+  document.getElementById('kelasDisplay').textContent = kelas;
+  document.getElementById('emailDisplay').textContent = email;
+  document.getElementById('teleponDisplay').textContent = telepon;
+  document.getElementById('alamatDisplay').textContent = alamat;
+  document.getElementById('hobiDisplay').textContent = hobi;
+
+  // Show keahlian if filled
+  if(keahlian) {
+    document.getElementById('keahlianItem').style.display = 'flex';
+    document.getElementById('keahlianDisplay').textContent = keahlian;
+  } else {
+    document.getElementById('keahlianItem').style.display = 'none';
+  }
+
+  // Handle photo
+  if(foto) {
+    let reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('fotoDisplay').innerHTML = `<img src="${e.target.result}" class="profile-image" alt="Foto Profil">`;
+      showProfile();
+    };
+    reader.readAsDataURL(foto);
+  } else {
+    document.getElementById('fotoDisplay').innerHTML = '<div class="profile-image no-image">👤</div>';
+    showProfile();
+  }
+}
+
+function showProfile() {
+  document.getElementById('formSection').style.display = 'none';
+  document.getElementById('outputSection').classList.add('active');
+}
+
+function editForm() {
+  document.getElementById('formSection').style.display = 'block';
+  document.getElementById('outputSection').classList.remove('active');
+}
+
+function resetForm() {
+  document.getElementById('nama').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('telepon').value = '';
+  document.getElementById('kelas').value = '';
+  document.getElementById('alamat').value = '';
+  document.getElementById('hobi').value = '';
+  document.getElementById('keahlian').value = '';
+  document.getElementById('foto').value = '';
+  document.getElementById('fileName').textContent = '';
+  document.getElementById('errorMsg').classList.remove('show');
+  document.getElementById('outputSection').classList.remove('active');
+}
+</script>
+
+</body>
+</html>
